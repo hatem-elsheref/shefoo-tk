@@ -25,6 +25,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Display Name</th>
                     <th scope="col">Permissions</th>
+                    <th scope="col">Total Admins</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -37,6 +38,7 @@
                        <td>
                            <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#{{$group->name}}-group"><i class="mdi mdi-eye-outline"></i></button>
                        </td>
+                       <td>{{ count($group->admins) }}</td>
                        <td>
                            <button class="btn btn-sm btn-danger" onclick="RemoveItem('form-item-group-{{$group->id}}')"><i class="mdi mdi-delete-outline"></i></button>
                            <a href="{{route('group.edit',$group->name)}}" class="btn btn-sm btn-success"><i class="mdi mdi-square-edit-outline"></i></a>

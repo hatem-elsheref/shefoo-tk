@@ -20,7 +20,7 @@ class GroupController extends Controller
     // show all groups in table
     public function index(){
         // get all groups in database with the permissions relation using eager loading
-        $groups=Group::with(['permissions'=>function($query){
+        $groups=Group::with(['admins','permissions'=>function($query){
             $query->select('display_name');
          }])->select('id','name','display_name')
             ->where('name','!=',config('trusting.administratorGroup')['name'])->get();
