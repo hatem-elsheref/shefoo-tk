@@ -17,7 +17,7 @@ class AdminTableSeeder extends Seeder
             'name'      =>'Hatem Mohamed',
             'email'     =>'hatem@app.com',
             'password'  =>bcrypt('12345678'),
-            'avatar'    =>'default.png',
+            'avatar'    =>'uploads/admins/default-user.png',
             'group'     =>$adminGroup
         ]);
     }

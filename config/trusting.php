@@ -3,7 +3,7 @@
 return [
     'models'=>[
         'Admin'     =>['c','r','d','u'],
-        'User'      =>['u','r','d'],
+        'User'      =>['r','d'],
         'Role'      =>['c','r','d','u'],
         'Category'  =>['c','r','d','u'],
         'Tag'       =>['c','r','d','u'],

@@ -20,14 +20,14 @@ Route::group($attributes, function(){
         Route::group(['middleware'=>'backendGate:backend,auth'],function(){
             // logout or terminate the admin session
             Route::group(['namespace' => 'Auth'],function (){
-                Route::post('/Logout','AdminAuthController@logout')->name('dashboard.logout');
+                Route::any('/Logout','AdminAuthController@logout')->name('dashboard.logout');
             });
 
             // show the current authenticated user account info and update the information
             Route::group(['namespace' => 'Auth'],function (){
                 Route::get('/My-Account','AdminAccountController@showAccount')->name('dashboard.account.show');
-                Route::put('/Update-Account-Info','DashboardController@updateInformation')->name('dashboard.account.update');
-                Route::put('/Reset-Account-Password','DashboardController@resetPassword')->name('dashboard.account.reset');
+                Route::put('/Update-Account-Info','AdminAccountController@updateInformation')->name('dashboard.account.update');
+                Route::put('/Reset-Account-Password','AdminAccountController@resetPassword')->name('dashboard.account.reset');
             });
 
 

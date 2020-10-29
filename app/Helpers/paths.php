@@ -13,3 +13,9 @@ if (!function_exists('frontendAssets')){
         return asset('assets/frontend/'.$asset);
     }
 }
+
+if (!function_exists('uploads')){
+    function uploads($file){
+        return asset($file);
+    }
+}

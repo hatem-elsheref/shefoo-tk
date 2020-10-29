@@ -37,6 +37,8 @@
     <![endif]-->
     <script src="{{backendAssets('plugins/nprogress/nprogress.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
+    <!-- global custom design -->
+    <link id="sleek-css" rel="stylesheet" href="{{backendAssets('css/system-design.css')}}" />
     @yield('css')
 </head>
 

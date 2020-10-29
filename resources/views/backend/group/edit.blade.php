@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-    <nav aria-label="breadcrumb">
+    <nav aria-label="breadcrumb" class="paths-nav">
         <ol class="breadcrumb breadcrumb-inverse">
             <li class="breadcrumb-item">
                 <a href="{{route('dashboard.index')}}">Home</a>
