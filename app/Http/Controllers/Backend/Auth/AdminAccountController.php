@@ -12,8 +12,7 @@ use App\Http\Controllers\Controller;
 class AdminAccountController extends Controller
 {
 
-    private $uploadedFolderName='admins';
-    private $defaultAvatar='default-user.png';
+
 
     //return the current authenticated admin view
     public function showAccount(){
@@ -30,17 +29,17 @@ class AdminAccountController extends Controller
        $request->validate([
            'name'    =>['required','string','max:191'],
            'email'   =>['required','string','max:191',Rule::unique('admins')->ignore($admin->id)],
-           'avatar'  =>['image','mimes:jpg,jpeg,png,webp','max:2000']
+           'image'   =>['image','mimes:jpg,jpeg,png,webp','max:'.ADMIN_AVATAR_MAX_SIZE]
        ]);
        // check if inputs has image already uploaded by the authenticated admin
-       if($request->hasFile('avatar') && !empty($request->file('avatar'))){
+       if($request->hasFile('image') && !empty($request->file('image'))){
            // get the prepared path
-           $path=$this->preparePathToUpload($request);
+           $path=preparePathToUpload($request,_ADMIN);
           // upload the file with some configuration
-           Image::make($request->file('avatar'))->resize(260, 260)->save($path,100);
+           Image::make($request->file('image'))->resize(260, 260)->save($path,100);
 
           // check if the old file already exists or not to remove it if exist
-           if($admin->avatar != mainPath($this->uploadedFolderName.'/'.$this->defaultAvatar)){
+           if($admin->avatar != mainPath(_ADMIN.'/'.DEFAULT_AVATAR)){
                if(File::exists(fullPath($admin->avatar))){
                   File::delete(fullPath($admin->avatar));
                }        
@@ -50,7 +49,7 @@ class AdminAccountController extends Controller
            $path=$admin->avatar;
        }
        // prepare the new validated data
-       $validatedData=$request->except(['_method','_token','avatar','tab']);
+       $validatedData=$request->except(['_method','_token','image','tab']);
        $validatedData['avatar']=$path;
     
        // check if update done or not
@@ -91,10 +90,6 @@ class AdminAccountController extends Controller
         
     }
 
-    // prepare the new full name of the uploaded file
-    private function preparePathToUpload($request){
-        $name=time().'-'.Str::slug($request->name).'-avatar.'.$request->file('avatar')->getClientOriginalExtension();
-        return mainPath($this->uploadedFolderName.'/'.$name);
-    }
+  
 
 }

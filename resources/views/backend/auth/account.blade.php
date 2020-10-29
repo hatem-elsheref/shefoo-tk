@@ -38,7 +38,10 @@
                         <p>{{ ucwords(auth(ADMIN_GUARD)->user()->adminGroup->name) }}</p>
                         <p class="text-dark font-weight-medium pt-4 mb-2">Created At</p>
                         <p>{{ auth(ADMIN_GUARD)->user()->created_at->format('Y-m-d @ h:i:s a') }}</p>
-                       
+                        <p class="text-dark font-weight-medium pt-4 mb-2">Permissions</p>
+                       @foreach(session('permissions') as $permission)
+                           <span class="badge badge-info mt-2">{{ $permission }}</span>
+                       @endforeach
                     </div>
                 </div>
             </div>
@@ -65,10 +68,10 @@
                                     @method('PUT')
                                     <input type="hidden" name="tab" value="information">
                                     <div class="form-group row">
-                                        <label for="coverImage" class="col-sm-4 col-lg-2 ">Your Avatat</label>
+                                        <label for="coverImage" class="col-sm-4 col-lg-2 ">Your Avatar</label>
                                         <div class="col-sm-6 col-lg-9">
                                             <div class="custom-file mb-1">
-                                                <input type="file" class="custom-file-input" name="avatar" id="coverImage" >
+                                                <input type="file" class="custom-file-input" name="image" id="coverImage" >
                                                 <label class="custom-file-label" for="coverImage">Choose file...</label>
                                                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                                             </div>
@@ -169,22 +172,3 @@
 
 @endsection
 
-@section('js')
-<script>
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    
-    reader.onload = function(e) {
-      $('#img-preview').attr('src', e.target.result);
-    }
-    
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
-  }
-}
-
-$("#coverImage").change(function() {
-  readURL(this);
-});    
-</script>
-@endsection

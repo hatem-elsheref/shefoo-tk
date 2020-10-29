@@ -51,7 +51,8 @@
         },
         "files": [
             "app/Helpers/paths.php",
-            "app/Helpers/constsants.php"
+            "app/Helpers/constsants.php",
+            "app/Helpers/helper.php"
         ]
     },
     "minimum-stability": "dev",

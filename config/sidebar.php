@@ -16,6 +16,25 @@ return [
             ],
         ],
         [
+            'name'  =>'Admins',
+            'icon'  =>'mdi mdi-account-multiple-plus-outline',
+            'active'=>false,
+            'sub'   =>[
+                [
+                    'name'=>'Admins',
+                    'new'   =>false,
+                    'color' =>'danger',
+                    'route' =>'Admin.index'
+                ],
+                [
+                    'name'=>'Create Admin',
+                    'new'   =>false,
+                    'color' =>'danger',
+                    'route' =>'Admin.create'
+                ]
+            ],
+        ],
+        [
             'name'  =>'Groups',
             'icon'  =>'mdi mdi-account-group-outline',
             'active'=>false,

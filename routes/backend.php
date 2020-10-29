@@ -49,6 +49,12 @@ Route::group($attributes, function(){
                 
             });
 
+               // manage the admins
+               Route::group(['namespace' => 'Admin'],function (){
+                Route::resource('/Admin','AdminController')->except('show');
+            });
+
+
         });
 
     });
