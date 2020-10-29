@@ -24,6 +24,7 @@ class CreateAdminsTable extends Migration
 
             $table->foreign('group')->references('id')
                 ->on('groups')->onDelete('cascade');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

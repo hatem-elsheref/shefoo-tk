@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAuthController extends Controller
 {
-    const GUARD='backend';
     const BLOCKED='blocked';
     public function showLoginForm(){
         return view('backend.auth.login');
@@ -23,16 +22,16 @@ class AdminAuthController extends Controller
         $credentials=['email'=>$request->email,'password'=>$request->password];
         $rememberMe=$request->has('rememberMe');
         // try to login with the above credentials
-        if (Auth::guard(self::GUARD)->attempt($credentials,$rememberMe)){
+        if (Auth::guard(ADMIN_GUARD)->attempt($credentials,$rememberMe)){
             // login done
-            $authenticatedAdmin=Auth::guard(self::GUARD);
+            $authenticatedAdmin=Auth::guard(ADMIN_GUARD);
             // check if the authenticated user is blocked by super admin or not
             if ($authenticatedAdmin->user()->status === self::BLOCKED){
                 // the authenticated user is blocked
                 // logout and return back with messages and inputs
                 $authenticatedAdmin->logout();
                 return redirect()->route('dashboard.login.show')->withInput()
-                    ->withErrors('email_or_password','Your Account Is Blocked Call Back The Admin To Solve The Problem');
+                    ->withErrors(['email_or_password'=>'Your Account Is Blocked Call Back The Admin To Solve The Problem']);
             }else{
                 // the authenticated user is not blocked
                 // get the permissions of the authenticated user role and put it in session and redirect to dashboard
@@ -44,12 +43,12 @@ class AdminAuthController extends Controller
             // login failed
             // return back with the inputs and error message
             return redirect()->route('dashboard.login.show')->withInput()
-         ->withErrors('email_or_password','Invalid Email Or Password');
+                ->withErrors(['email_or_password'=>'Invalid Email Or Password']);
         }
     }
 
     public function logout(){
-        Auth::guard(self::GUARD)->logout();
+        Auth::guard(ADMIN_GUARD)->logout();
         return redirect()->route('dashboard.login.show');
     }
 

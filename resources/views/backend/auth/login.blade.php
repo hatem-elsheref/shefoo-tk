@@ -53,7 +53,7 @@
                                     <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
                                 </g>
                             </svg>
-                            <span class="brand-name">Sleek Dashboard</span>
+                            <span class="brand-name">{{ env('APP_NAME') }}</span>
                         </a>
                     </div>
                 </div>
@@ -65,26 +65,33 @@
                         @method('POST')
                         <div class="row">
                             <div class="form-group col-md-12 mb-4">
-                                <input type="email" name="email" class="form-control input-lg" id="email" aria-describedby="emailHelp" placeholder="Username">
+                                @error('email_or_password')
+                                 <span class="text-danger">* {{ $message }}</span>
+                                @enderror
+                                 <input type="email" name="email" class="form-control input-lg" value="{{ old('email') }}" id="email" aria-describedby="emailHelp" placeholder="Username">
+                                @error('email')
+                                 <span class="text-danger">* {{ $message }}</span>
+                                @enderror
                             </div>
+                          
                             <div class="form-group col-md-12 ">
                                 <input type="password" name="password" class="form-control input-lg" id="password" placeholder="Password">
+                                @error('password')
+                                 <span class="text-danger">* {{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="d-flex my-2 justify-content-between">
                                     <div class="d-inline-block mr-3">
                                         <label class="control control-checkbox">Remember me
-                                            <input type="checkbox" />
+                                            <input type="checkbox" name="rememberMe" @if(old('rememberMe')) checked @endif/>
                                             <div class="control-indicator"></div>
                                         </label>
 
                                     </div>
-                                    <p><a class="text-blue" href="#">Forgot Your Password?</a></p>
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
-                                <p>Don't have an account yet ?
-                                    <a class="text-blue" href="sign-up.html">Sign Up</a>
-                                </p>
+                            
                             </div>
                         </div>
                     </form>

@@ -68,15 +68,15 @@
                 <!-- User Account -->
                 <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <img src="{{ uploads(auth('backend')->user()->avatar) }}" class="user-image" alt="{{ auth('backend')->user()->name }} avatar" />
-                        <span class="d-none d-lg-inline-block">{{ auth('backend')->user()->name }}</span>
+                        <img src="{{ uploads(auth(ADMIN_GUARD)->user()->avatar) }}" class="user-image" alt="{{ auth(ADMIN_GUARD)->user()->name }} avatar" />
+                        <span class="d-none d-lg-inline-block">{{ auth(ADMIN_GUARD)->user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <!-- User image -->
                         <li class="dropdown-header">
-                            <img src="{{ uploads(auth('backend')->user()->avatar) }}" class="img-circle" alt="{{ auth('backend')->user()->name }} avatar" />
+                            <img src="{{ uploads(auth(ADMIN_GUARD)->user()->avatar) }}" class="img-circle" alt="{{ auth(ADMIN_GUARD)->user()->name }} avatar" />
                             <div class="d-inline-block">
-                                {{ auth('backend')->user()->name }} <small class="pt-1">{{ auth('backend')->user()->email }}</small>
+                                {{ auth(ADMIN_GUARD)->user()->name }} <small class="pt-1">{{ auth(ADMIN_GUARD)->user()->email }}</small>
                             </div>
                         </li>
 
