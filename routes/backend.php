@@ -21,6 +21,7 @@ Route::group($attributes, function(){
             // logout or terminate the admin session
             Route::group(['namespace' => 'Auth'],function (){
                 Route::any('/Logout','AdminAuthController@logout')->name('dashboard.logout');
+                Route::get('/Permissions','AdminAuthController@refreshPermissions')->name('dashboard.permissions.refresh');
             });
 
             // show the current authenticated user account info and update the information

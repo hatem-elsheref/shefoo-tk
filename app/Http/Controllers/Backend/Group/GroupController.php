@@ -11,10 +11,15 @@ class GroupController extends Controller
 {
 
     private $group;
+    
 
     // constructor to initialize the values and check the authorization by middleware
     public function __construct(){
 
+        $this->middleware('authorized:read_group')->only('index');
+        $this->middleware('authorized:create_group')->only(['create','store']);
+        $this->middleware('authorized:update_group')->only(['edit','update']);
+        $this->middleware('authorized:delete_group')->only(['destroy']);
     }
 
     // show all groups in table

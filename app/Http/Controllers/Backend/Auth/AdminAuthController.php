@@ -35,7 +35,7 @@ class AdminAuthController extends Controller
             }else{
                 // the authenticated user is not blocked
                 // get the permissions of the authenticated user role and put it in session and redirect to dashboard
-                $currentAuthenticatedAdminPermission=$authenticatedAdmin->user()->adminGroup->permissions->pluck('name')->toArray();
+                $currentAuthenticatedAdminPermission=$this->getTheRelatedPermissions($authenticatedAdmin);
                 session()->put('permissions',$currentAuthenticatedAdminPermission);
                 return redirect()->route('dashboard.index');
             }
@@ -49,7 +49,19 @@ class AdminAuthController extends Controller
 
     public function logout(){
         Auth::guard(ADMIN_GUARD)->logout();
+        session()->forget('permissions');
         return redirect()->route('dashboard.login.show');
+    }
+
+    public function refreshPermissions(){
+        $currentAuthenticatedAdminPermission=$this->getTheRelatedPermissions(Auth::guard(ADMIN_GUARD));
+        session()->forget('permissions');
+        session()->put('permissions',$currentAuthenticatedAdminPermission);
+        return redirect()->back();
+    }
+
+    private function getTheRelatedPermissions($auth){
+        return $auth->user()->adminGroup->permissions->pluck('name')->toArray();
     }
 
 }

@@ -17,6 +17,12 @@ class AdminController extends Controller{
 
     public function __construct(){
         $this->administrationGroup= Group::where('name',config('trusting.administratorGroup')['name'])->value('id');
+    
+        $this->middleware('authorized:read_admin')->only('index');
+        $this->middleware('authorized:create_admin')->only(['create','store']);
+        $this->middleware('authorized:update_admin')->only(['edit','update']);
+        $this->middleware('authorized:delete_admin')->only(['destroy']);
+   
     }
 
     // return view that show all admins in table

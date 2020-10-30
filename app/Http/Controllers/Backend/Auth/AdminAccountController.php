@@ -52,11 +52,14 @@ class AdminAccountController extends Controller
        $validatedData=$request->except(['_method','_token','image','tab']);
        $validatedData['avatar']=$path;
     
+       
        // check if update done or not
-       if($admin->update($validatedData))
-           self::Success();
-       else
+       if($admin->update($validatedData)){
+        self::Success();
+        auth(ADMIN_GUARD)->loginUsingId($admin->id);
+       }else
            self::Fail();
+       
        
        return redirect()->route('dashboard.account.show');
 

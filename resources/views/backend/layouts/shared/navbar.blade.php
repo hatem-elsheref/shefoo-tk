@@ -86,6 +86,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('dashboard.permissions.refresh') }}">
+                                <i class="mdi mdi-refresh"></i> Refresh
+                            </a>
+                        </li>
+                        <li>
                             <a href="#">
                                 <i class="mdi mdi-email"></i> Message
                             </a>
