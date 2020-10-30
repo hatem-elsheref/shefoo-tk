@@ -2,6 +2,7 @@
 
 return [
     'links'=>[
+        // dashboard
         [
             'name'  =>'Dashboard',
             'icon'  =>'mdi mdi-view-dashboard-outline',
@@ -15,6 +16,7 @@ return [
                 ]
             ],
         ],
+        // admin
         [
             'name'  =>'Admins',
             'icon'  =>'mdi mdi-account-multiple-plus-outline',
@@ -34,6 +36,7 @@ return [
                 ]
             ],
         ],
+        // group
         [
             'name'  =>'Groups',
             'icon'  =>'mdi mdi-account-group-outline',
@@ -52,6 +55,44 @@ return [
                     'route' =>'group.create'
                 ]
             ],
-        ]
+        ],
+        // setting
+        [
+            'name'  =>'Settings',
+            'icon'  =>'mdi mdi-settings',
+            'active'=>false,
+            'sub'   =>[
+                [
+                    'name'  =>'Translations',
+                    'new'   =>true,
+                    'color' =>'warning',
+                    'route' =>'dashboard.index'
+                ],
+                [
+                    'name'  =>'Logs',
+                    'new'   =>true,
+                    'color' =>'info',
+                    'route' =>'dashboard.index'
+                ],
+                [
+                    'name'  =>'System',
+                    'new'   =>true,
+                    'color' =>'danger',
+                    'route' =>'dashboard.index'
+                ],
+                [
+                    'name'  =>'Seo',
+                    'new'   =>true,
+                    'color' =>'success',
+                    'route' =>'dashboard.index'
+                ],
+                [
+                    'name'  =>'Slack & Telegram',
+                    'new'   =>true,
+                    'color' =>'dark',
+                    'route' =>'dashboard.index'
+                ]
+            ],
+        ],
     ]
 ];
