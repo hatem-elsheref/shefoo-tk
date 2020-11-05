@@ -2,3 +2,6 @@
     margin-top: -30px !important;
     margin-bottom: 10px;
 }
+.navbar .navbar-right .navbar-nav .language-menu .dropdown-toggle:after{
+    display: none;
+}

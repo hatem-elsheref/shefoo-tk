@@ -48,7 +48,7 @@
                         <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{$link['name']}}"
                            aria-expanded="false" aria-controls="{{$link['name']}}">
                             <i class="{{$link['icon']}}"></i>
-                            <span class="nav-text">{{$link['name']}}</span> <b class="caret"></b>
+                            <span class="nav-text">{{__('backend.'.$link['name'])}}</span> <b class="caret"></b>
                         </a>
                         <ul  class="collapse"  id="{{$link['name']}}"
                              data-parent="#sidebar-menu">
@@ -57,7 +57,7 @@
                                     @foreach($link['sub'] as $sub)
                                     <li >
                                         <a class="sidenav-item-link" href="{{route($sub['route'])}}">
-                                            <span class="nav-text">{{$sub['name']}}</span>
+                                            <span class="nav-text">{{__('backend.'.$sub['name'])}}</span>
                                             @if($sub['new'])
                                                 <span class="badge badge-{{$sub['color']}}">new</span>
                                             @endif

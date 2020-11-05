@@ -1,0 +1,1 @@
+<?php return [ 'manage_translation_keys' => 'Manage The Translation','save' => 'Save','translation_value_of' => 'Value In','choice_file' => '__FILE__','translation_key' => 'Key','translation_file' => 'Translation File','file' => 'File','dashboard' => 'Dashboard','default' => 'Default','create_admin' => 'Create Admin','admins' => 'Admins'];

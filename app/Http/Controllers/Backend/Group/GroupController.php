@@ -11,7 +11,7 @@ class GroupController extends Controller
 {
 
     private $group;
-    
+
 
     // constructor to initialize the values and check the authorization by middleware
     public function __construct(){
@@ -49,7 +49,7 @@ class GroupController extends Controller
             'permissions'   =>'required|array|min:1'
         ]);
         $group=Group::create([
-            'name'  =>$request->name,
+            'name'  =>str_replace(' ','_',$request->name),
             'display_name'  =>$request->display_name
         ]);
         if ($group){
@@ -88,7 +88,7 @@ class GroupController extends Controller
                 'display_name'  =>'required|string|max:191',
                 'permissions'   =>'required|array|min:1'
             ]);
-            $this->group->name=$request->name;
+            $this->group->name=str_replace(' ','_',$request->name);
             $this->group->display_name=$request->display_name;
             $this->group->save();
             $this->group->permissions()->sync($request->permissions);

@@ -15,7 +15,7 @@
     <div class="card card-default mt-2">
         <div class="card-header card-header-border-bottom justify-content-between">
             <h2>Groups</h2>
-            @have('create_group') 
+            @have('create_group')
             <a href="{{route('group.create')}}" title="add new group" class="btn btn-sm btn-primary"><i class="mdi mdi-plus-circle-outline"></i></a>
             @endhave
         </div>
@@ -42,24 +42,24 @@
                        </td>
                        <td>{{ count($group->admins) }}</td>
                        <td>
-                          
-                           @have('delete_group') 
+
+                           @have('delete_group')
                            <button class="btn btn-sm btn-danger" onclick="RemoveItem('form-item-group-{{$group->id}}')"><i class="mdi mdi-delete-outline"></i></button>
                            @else
                            <button class="btn btn-sm btn-danger" disabled><i class="mdi mdi-delete-outline"></i></button>
                            @endhave
-                         
-                           @have('update_group')                           
+
+                           @have('update_group')
                            <a href="{{route('group.edit',$group->name)}}" class="btn btn-sm btn-success"><i class="mdi mdi-square-edit-outline"></i></a>
                            @else
                            <button class="btn btn-sm btn-success" disabled><i class="mdi mdi-square-outline"></i></button>
                            @endhave
                        </td>
                    </tr>
-                   @have('delete_group') 
+                   @have('delete_group')
                    <form action="{{route('group.destroy',$group->name)}}" id="form-item-group-{{$group->id}}" method="post">@csrf @method('DELETE')</form>
                    @endhave
-                   @have('update_group')             
+                   @have('update_group')
                    <!-- Tooltip Modal -->
                    <div class="modal fade" id="{{$group->name}}-group" tabindex="-1" role="dialog" aria-labelledby="{{$group->name}}-group" aria-hidden="true">
                        <div class="modal-dialog modal-dialog-centered" role="document">

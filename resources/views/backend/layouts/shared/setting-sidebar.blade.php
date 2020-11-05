@@ -41,11 +41,11 @@
                     <a href="javascript:void(0);" class="btn-right-sidebar-2 sidebar-light-to">Light</a>
                 </div>
 
-                <span class="right-sidebar-2-subtitle">Direction</span>
-                <div class="no-col-space">
-                    <a href="javascript:void(0);" class="btn-right-sidebar-2 btn-right-sidebar-2-active ltr-to">LTR</a>
-                    <a href="javascript:void(0);" class="btn-right-sidebar-2 rtl-to">RTL</a>
-                </div>
+{{--                <span class="right-sidebar-2-subtitle">Direction</span>--}}
+{{--                <div class="no-col-space">--}}
+{{--                    <a href="javascript:void(0);" class="btn-right-sidebar-2 btn-right-sidebar-2-active ltr-to">LTR</a>--}}
+{{--                    <a href="javascript:void(0);" class="btn-right-sidebar-2 rtl-to">RTL</a>--}}
+{{--                </div>--}}
 
                 <div class="d-flex justify-content-center" style="padding-top: 30px">
                     <div id="reset-options" style="width: auto; cursor: pointer" class="btn-right-sidebar-2 btn-reset">Reset

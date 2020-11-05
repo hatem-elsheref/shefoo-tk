@@ -1,11 +1,10 @@
 <?php
 
-// all routes here is related to the dashboard or the admins only
+// all routes here is related to the dashboard or the admins only [permissions & groups & authentication & admins & profile & dashboard home & translations]
 $languageMiddleware= [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ];
 $attributes=['prefix' => LaravelLocalization::setLocale(),'middleware' => $languageMiddleware];
 // apply some middleware to make the system support multi languages
 Route::group($attributes, function(){
-
     Route::group(['prefix' => config('general.routes.backend.prefix')],function (){
         // all routes here not required the admin to be authenticated
         Route::group(['middleware'=>'backendGate:backend,guest'],function(){
@@ -47,15 +46,28 @@ Route::group($attributes, function(){
                 Route::get('/edit/{name}','GroupController@edit')->name('group.edit');
                 Route::put('/update/{name}','GroupController@update')->name('group.update');
                 Route::delete('/destroy/{name}','GroupController@destroy')->name('group.destroy');
-                
+
             });
 
-               // manage the admins
-               Route::group(['namespace' => 'Admin'],function (){
+           // manage the admins
+           Route::group(['namespace' => 'Admin'],function (){
                 Route::resource('/Admin','AdminController')->except('show');
             });
 
+            // manage the translations
+            Route::group(['namespace' => 'Setting'],function (){
+                Route::get('/Setting','SettingController@index')->name('setting.index');
+                Route::get('/Translation','TranslationController@index')->name('translation.index');
+                Route::post('/Translation','TranslationController@save')->name('translation.save');
+            });
 
+
+
+
+
+
+
+            require_once 'business-backend.php';
         });
 
     });

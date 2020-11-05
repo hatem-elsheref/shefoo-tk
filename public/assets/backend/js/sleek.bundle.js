@@ -10631,41 +10631,41 @@
 	    }
 
 
-	    // Direction
-	    var ltr = jQuery('.ltr-to');
-	    var rtl = jQuery('.rtl-to');
-
-	    ltr.click(function () {
-	      jQuery(this).addClass('btn-right-sidebar-2-active');
-	      rtl.removeClass('btn-right-sidebar-2-active');
-	      $('html').attr('dir', 'ltr');
-	      $("#sleek-css").attr("href", "/assets/backend/css/sleek.css");
-	      window.dir = 'ltr';
-
-	      //Store in local storage
-	      setOptions("direction", "ltr");
-	    });
-
-	    //Click for current options
-	    if (currentOptions.direction === "ltr") {
-	      ltr.trigger("click");
-	    }
-
-	    rtl.click(function () {
-	      jQuery(this).addClass('btn-right-sidebar-2-active');
-	      ltr.removeClass('btn-right-sidebar-2-active');
-	      $('html').attr('dir', 'rtl');
-	      $("#sleek-css").attr("href", "/assets/backend/css/sleek.rtl.css");
-	      window.dir = 'rtl';
-
-	      //Store in local storage
-	      setOptions("direction", "rtl");
-	    });
-
-	    //Click for current options
-	    if (currentOptions.direction === "rtl") {
-	      rtl.trigger("click");
-	    }
+	    // // Direction
+	    // var ltr = jQuery('.ltr-to');
+	    // var rtl = jQuery('.rtl-to');
+        //
+	    // ltr.click(function () {
+	    //   jQuery(this).addClass('btn-right-sidebar-2-active');
+	    //   rtl.removeClass('btn-right-sidebar-2-active');
+	    //   $('html').attr('dir', 'ltr');
+	    //   $("#sleek-css").attr("href", "/assets/backend/css/sleek.css");
+	    //   window.dir = 'ltr';
+        //
+	    //   //Store in local storage
+	    //   setOptions("direction", "ltr");
+	    // });
+        //
+	    // //Click for current options
+	    // if (currentOptions.direction === "ltr") {
+	    //   ltr.trigger("click");
+	    // }
+        //
+	    // rtl.click(function () {
+	    //   jQuery(this).addClass('btn-right-sidebar-2-active');
+	    //   ltr.removeClass('btn-right-sidebar-2-active');
+	    //   $('html').attr('dir', 'rtl');
+	    //   $("#sleek-css").attr("href", "/assets/backend/css/sleek.rtl.css");
+	    //   window.dir = 'rtl';
+        //
+	    //   //Store in local storage
+	    //   setOptions("direction", "rtl");
+	    // });
+        //
+	    // //Click for current options
+	    // if (currentOptions.direction === "rtl") {
+	    //   rtl.trigger("click");
+	    // }
 
 	    $('#reset-options').click(function () {
 	      clearOptions();

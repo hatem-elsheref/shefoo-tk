@@ -4,12 +4,12 @@ return [
     'links'=>[
         // dashboard
         [
-            'name'  =>'Dashboard',
+            'name'  =>'dashboard',
             'icon'  =>'mdi mdi-view-dashboard-outline',
             'active'=>false,
             'sub'   =>[
                 [
-                    'name'  =>'Default',
+                    'name'  =>'default',
                     'new'   =>true,
                     'color' =>'danger',
                     'route' =>'dashboard.index'
@@ -18,18 +18,18 @@ return [
         ],
         // admin
         [
-            'name'  =>'Admins',
+            'name'  =>'admins',
             'icon'  =>'mdi mdi-account-multiple-plus-outline',
             'active'=>false,
             'sub'   =>[
                 [
-                    'name'=>'Admins',
+                    'name'=>'admins',
                     'new'   =>false,
                     'color' =>'danger',
                     'route' =>'Admin.index'
                 ],
                 [
-                    'name'=>'Create Admin',
+                    'name'=>'create_admin',
                     'new'   =>false,
                     'color' =>'danger',
                     'route' =>'Admin.create'
@@ -63,10 +63,16 @@ return [
             'active'=>false,
             'sub'   =>[
                 [
+                    'name'  =>'OverView',
+                    'new'   =>true,
+                    'color' =>'secondary',
+                    'route' =>'setting.index'
+                ],
+                [
                     'name'  =>'Translations',
                     'new'   =>true,
                     'color' =>'warning',
-                    'route' =>'dashboard.index'
+                    'route' =>'translation.index'
                 ],
                 [
                     'name'  =>'Logs',
