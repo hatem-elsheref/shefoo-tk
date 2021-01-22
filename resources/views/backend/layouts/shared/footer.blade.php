@@ -5,9 +5,9 @@
             &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
             <a
                 class="text-primary"
-                href="http://www.iamabdus.com/"
+                href="https://www.linkedin.com/in/hatem-mohamed-31b8901a2/"
                 target="_blank"
-            >Abdus</a
+            >Hatem Mohamed</a
             >.
         </p>
     </div>

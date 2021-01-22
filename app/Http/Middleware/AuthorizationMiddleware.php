@@ -8,23 +8,24 @@ use App\Http\Controllers\NotificationTrait;
 class AuthorizationMiddleware
 {
     use NotificationTrait;
+
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @param $permission
+     * @return \Illuminate\Http\RedirectResponse|mixed
      */
     public function handle($request, Closure $next,$permission)
     {
-    
-        if(haveThePermission($permission)){
+
+        if(haveThePermission($permission))
             return $next($request);
-        }
+
+        //else
 
         self::NotAuthorized();
         return redirect()->route('dashboard.index');
 
-    
+
     }
 }

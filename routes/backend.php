@@ -1,8 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
+/* Routes For System Base */
 
 // all routes here is related to the dashboard or the admins only [permissions & groups & authentication & admins & profile & dashboard home & translations]
-$languageMiddleware= [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ];
-$attributes=['prefix' => LaravelLocalization::setLocale(),'middleware' => $languageMiddleware];
+$attributes=['prefix' => LaravelLocalization::setLocale(),'middleware' => macameraMiddlewares()];
 // apply some middleware to make the system support multi languages
 Route::group($attributes, function(){
     Route::group(['prefix' => config('general.routes.backend.prefix')],function (){
@@ -61,14 +63,12 @@ Route::group($attributes, function(){
                 Route::post('/Translation','TranslationController@save')->name('translation.save');
             });
 
-
-
-
-
-
-
-            require_once 'business-backend.php';
         });
 
     });
 });
+
+
+
+/* Routes For System Logic */
+require_once 'backend-business-logic.php';

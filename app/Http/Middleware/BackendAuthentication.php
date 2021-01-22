@@ -5,23 +5,22 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\NotificationTrait;
-use App\Http\Middleware\BackendAuthentication;
-
+use Illuminate\Support\Facades\Auth;
 
 class BackendAuthentication
 {
     use NotificationTrait;
-    
+
     /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param $request
+     * @param Closure $next
+     * @param string $guard
+     * @param string $type
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|mixed
      */
     public function handle($request, Closure $next,$guard='backend',$type ='auth')
     {
-        // this url required the admin to be authenticated 
+        // this url required the admin to be authenticated
         if ($type === 'auth'){
             if ($this->checkIfTheAdminIsAuthenticated($guard))
                 return $next($request);
@@ -29,9 +28,8 @@ class BackendAuthentication
                 self::NotAuthorized();
                 return redirect()->route('dashboard.login.show');
             }
-
         }else{
-            // this url required the admin not to be authenticated
+            // this url required the admin  [ not ] to be authenticated
             if ($this->checkIfTheAdminIsGuest($guard))
                 return $next($request);
             else{
@@ -44,26 +42,20 @@ class BackendAuthentication
 
      /* check if there is not an authentication in the provided guard
       the current admin or user is guest (not login)
-      return true   if he/she is a guest
-      return false  if he/she is a authenticated
+      return true   if user is a guest
+      return false  if user is a authenticated
       */
     private function checkIfTheAdminIsAuthenticated($guard){
-        if (\Auth::guard($guard)->check()){
-            return true;
-        }
-        return  false;
+        return Auth::guard($guard)->check() ? true : false;
     }
 
 
     /* check if there is not an authentication in the provided guard
       the current admin or user is guest (not login)
-      return true   if he/she is a guest
-      return false  if he/she is a authenticated
+      return true   if the user is a guest
+      return false  if the user is a authenticated
       */
     private function checkIfTheAdminIsGuest($guard){
-        if ( \Auth::guard($guard)->check()){
-            return false;
-        }
-        return true;
+        return Auth::guard($guard)->check() ? false : true;
     }
 }

@@ -29,6 +29,11 @@
     <!-- global custom design -->
     <link id="sleek-css" rel="stylesheet" href="{{backendAssets('css/system-design.css')}}" />
     @yield('css')
+    <style>
+        .sidebar-fixed-offcanvas .sidebar-with-footer, .sidebar-fixed .sidebar-with-footer{
+            padding-bottom: 0px;
+        }
+    </style>
 </head>
 
 

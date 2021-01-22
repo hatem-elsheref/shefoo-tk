@@ -1,6 +1,14 @@
 <?php
 
-  // prepare the new full name of the uploaded file for user/admin/etc.. 
+// return the language middleware (macamera)
+if(!function_exists('macameraMiddlewares')){
+    function macameraMiddlewares(){
+        return [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ];
+    }
+}
+
+
+  // prepare the new full name of the uploaded file for user/admin/etc..
 
 if(!function_exists('preparePathToUpload')){
     function preparePathToUpload($request,$folderName){
@@ -14,10 +22,10 @@ if(!function_exists('preparePathToUpload')){
  if(!function_exists('haveThePermission')){
   function haveThePermission($permission){
     $permissions=session()->get('permissions');
-   
 
     if(is_null($permissions) || empty($permissions) || count($permissions) === 0)
-    return fasle;
+        return false;
+
     return in_array($permission,$permissions);
   }
 }
@@ -30,4 +38,3 @@ if(!function_exists('preparePathToUpload')){
 
 
 
-  

@@ -4,18 +4,18 @@
     <nav aria-label="breadcrumb" class="paths-nav">
         <ol class="breadcrumb breadcrumb-inverse">
             <li class="breadcrumb-item">
-                <a href="{{route('dashboard.index')}}">Home</a>
+                <a href="{{route('dashboard.index')}}">{{__('backend.home')}}</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{route('Admin.index')}}">Admins</a>
+                <a href="{{route('Admin.index')}}">{{__('backend.admins')}}</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Create New Admin</li>
+            <li class="breadcrumb-item active" aria-current="page">{{__('backend.create_admin')}}</li>
         </ol>
     </nav>
     <div class="card card-default mt-2">
         <div class="card-header card-header-border-bottom justify-content-between">
-            <h2>Add New Admin</h2>
-            <a href="{{route('Admin.index')}}" title="show all Admins" class="btn btn-sm btn-primary"><i class="mdi mdi-backup-restore"></i></a>
+            <h2>{{__('backend.create_new_admin')}}</h2>
+            <a href="{{route('Admin.index')}}" title="{{__('backend.show_all_admins')}}" class="btn btn-sm btn-primary"><i class="mdi mdi-backup-restore"></i></a>
         </div>
         <div class="card-body">
             <form method="post" action="{{route('Admin.store')}}" enctype="multipart/form-data">
@@ -24,8 +24,8 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter The Admin Name" value="{{old('name')}}">
+                            <label for="name">{{__('backend.form_name')}}</label>
+                            <input type="text" class="form-control" name="name" placeholder="{{__('backend.enter')}} {{__('backend.admin')}} {{__('backend.form_name')}}" value="{{old('name')}}">
                             @error('name')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -33,8 +33,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="Enter The Admin Email" value="{{old('email')}}">
+                            <label for="email">{{__('backend.form_email')}}</label>
+                            <input type="text" class="form-control" name="email" placeholder="{{__('backend.enter')}} {{__('backend.admin')}} {{__('backend.form_email')}}" value="{{old('email')}}">
                             @error('email')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -42,8 +42,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="Enter The Admin Password" value="{{old('password')}}">
+                            <label for="password">{{__('backend.form_password')}}</label>
+                            <input type="password" class="form-control" name="password" placeholder="{{__('backend.enter')}} {{__('backend.admin')}} {{__('backend.form_password')}}" value="{{old('password')}}">
                             @error('password')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -51,11 +51,11 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="group">Group</label>
+                            <label for="group">{{__('backend.form_group')}}</label>
                            <select name="group" class="form-control">
-                               <option selected disabled> __select__</option>
+                               <option selected disabled> {{__('backend.select_option')}}</option>
                                @foreach($groups as $group)
-                               <option value="{{ $group->id }}" @if(old('group') == $group->id) selected @endif>{{ $group->display_name }}</option>                                   
+                               <option value="{{ $group->id }}" @if(old('group') == $group->id) selected @endif>{{ $group->display_name }}</option>
                                @endforeach
                            </select>
                            @error('group')
@@ -64,24 +64,24 @@
                         </div>
                     </div>
 
-               
+
 
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="coverImage">Avatar</label>
+                            <label for="coverImage">{{__('backend.form_avatar')}}</label>
                             <div class="custom-file mb-1">
                                 <input type="file" class="custom-file-input" name="image" id="coverImage" >
-                                <label class="custom-file-label" for="coverImage">Choose file...</label>
+                                <label class="custom-file-label" for="coverImage">{{__('backend.choice_file')}}</label>
                             </div>
                             <img style="width: 60px;height:60px" id="img-preview" class="mt-2 img-responsive  img-fluid" src="{{ uploads(mainPath(_ADMIN.'/'.DEFAULT_AVATAR)) }}">
 
-    
+
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="group">Status</label>
-                            <label class="control control-checkbox checkbox-primary">Blocked
+                            <label for="group">{{__('backend.status')}}</label>
+                            <label class="control control-checkbox checkbox-primary">{{__('backend.blocked')}}
                                 <input type="checkbox" name="status" @if(old('status')) checked @endif>
                                 <div class="control-indicator"></div>
                             </label>
@@ -90,9 +90,9 @@
 
 
                 </div>
-                
+
                 <div class="form-footer pt-5 border-top">
-                    <button type="submit" class="btn btn-primary btn-default">Save</button>
+                    <button type="submit" class="btn btn-primary btn-default">{{__('backend.save')}}</button>
                 </div>
             </form>
         </div>

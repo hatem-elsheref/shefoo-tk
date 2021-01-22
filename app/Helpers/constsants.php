@@ -6,7 +6,7 @@ define('ADMIN_GUARD','backend');
 
 
 
-// uploaded paths ir folder/dir names
+// uploaded paths in folder/dir names
 
 define('DEFAULT_AVATAR','default-user.png');
 define('_ADMIN','admins');

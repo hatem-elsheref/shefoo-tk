@@ -38,11 +38,9 @@
 
 
                 @foreach(config('sidebar.links') as $link )
-                    <?php
-                   if (in_array(Request::route()->getName(),collect($link['sub'])->pluck('route')->toArray())){
-                       $link['active']=true;
-                   }
-                    ?>
+                    @php
+                        $link['active'] = in_array(Request::route()->getName(),collect($link['sub'])->pluck('route')->toArray());
+                    @endphp
 
                     <li  class="has-sub {{$link['active']?'active expand':''}} ">
                         <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#{{$link['name']}}"
@@ -75,28 +73,28 @@
 
         <div class="sidebar-footer">
             <hr class="separator mb-0" />
-            <div class="sidebar-footer-content">
-                <h6 class="text-uppercase">
-                    Cpu Uses <span class="float-right">40%</span>
-                </h6>
-                <div class="progress progress-xs">
-                    <div
-                        class="progress-bar active"
-                        style="width: 40%;"
-                        role="progressbar"
-                    ></div>
-                </div>
-                <h6 class="text-uppercase">
-                    Memory Uses <span class="float-right">65%</span>
-                </h6>
-                <div class="progress progress-xs">
-                    <div
-                        class="progress-bar progress-bar-warning"
-                        style="width: 65%;"
-                        role="progressbar"
-                    ></div>
-                </div>
-            </div>
+{{--            <div class="sidebar-footer-content">--}}
+{{--                <h6 class="text-uppercase">--}}
+{{--                    Cpu Uses <span class="float-right">40%</span>--}}
+{{--                </h6>--}}
+{{--                <div class="progress progress-xs">--}}
+{{--                    <div--}}
+{{--                        class="progress-bar active"--}}
+{{--                        style="width: 40%;"--}}
+{{--                        role="progressbar"--}}
+{{--                    ></div>--}}
+{{--                </div>--}}
+{{--                <h6 class="text-uppercase">--}}
+{{--                    Memory Uses <span class="float-right">65%</span>--}}
+{{--                </h6>--}}
+{{--                <div class="progress progress-xs">--}}
+{{--                    <div--}}
+{{--                        class="progress-bar progress-bar-warning"--}}
+{{--                        style="width: 65%;"--}}
+{{--                        role="progressbar"--}}
+{{--                    ></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 </aside>

@@ -11,4 +11,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     use NotificationTrait;
+
+
+    public function view($view){
+        return  trim(trim(static::ROOT_PATH,'.').'.'.trim($view,'.'));
+    }
 }

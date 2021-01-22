@@ -16,6 +16,32 @@ return [
                 ]
             ],
         ],
+        [
+            'name'  =>'blog',
+            'icon'  =>'mdi mdi-blogger',
+            'active'=>false,
+            'sub'   =>[
+                [
+                    'name'  =>'posts',
+                    'new'   =>true,
+                    'color' =>'danger',
+                    'route' =>'Post.index'
+                ],
+                [
+                    'name'  =>'categories',
+                    'new'   =>true,
+                    'color' =>'danger',
+                    'route' =>'Category.index'
+                ],
+                [
+                    'name'  =>'tags',
+                    'new'   =>true,
+                    'color' =>'danger',
+                    'route' =>'Tag.index'
+                ]
+            ],
+        ],
+
         // admin
         [
             'name'  =>'admins',
@@ -38,18 +64,18 @@ return [
         ],
         // group
         [
-            'name'  =>'Groups',
+            'name'  =>'groups',
             'icon'  =>'mdi mdi-account-group-outline',
             'active'=>false,
             'sub'   =>[
                 [
-                    'name'=>'Groups',
+                    'name'=>'groups',
                     'new'   =>false,
                     'color' =>'danger',
                     'route' =>'group.index'
                 ],
                 [
-                    'name'=>'Create Group',
+                    'name'=>'create_group',
                     'new'   =>false,
                     'color' =>'danger',
                     'route' =>'group.create'
@@ -58,46 +84,46 @@ return [
         ],
         // setting
         [
-            'name'  =>'Settings',
+            'name'  =>'settings',
             'icon'  =>'mdi mdi-settings',
             'active'=>false,
             'sub'   =>[
-                [
-                    'name'  =>'OverView',
+              /*  [
+                    'name'  =>'overview',
                     'new'   =>true,
                     'color' =>'secondary',
                     'route' =>'setting.index'
-                ],
+                ],*/
                 [
-                    'name'  =>'Translations',
+                    'name'  =>'translations',
                     'new'   =>true,
                     'color' =>'warning',
                     'route' =>'translation.index'
                 ],
-                [
-                    'name'  =>'Logs',
+                /*[
+                    'name'  =>'log',
                     'new'   =>true,
                     'color' =>'info',
                     'route' =>'dashboard.index'
                 ],
                 [
-                    'name'  =>'System',
+                    'name'  =>'system',
                     'new'   =>true,
                     'color' =>'danger',
                     'route' =>'dashboard.index'
                 ],
                 [
-                    'name'  =>'Seo',
+                    'name'  =>'seo',
                     'new'   =>true,
                     'color' =>'success',
                     'route' =>'dashboard.index'
                 ],
                 [
-                    'name'  =>'Slack & Telegram',
+                    'name'  =>'slack_telegram',
                     'new'   =>true,
                     'color' =>'dark',
                     'route' =>'dashboard.index'
-                ]
+                ]*/
             ],
         ],
     ]
