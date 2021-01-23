@@ -28,7 +28,7 @@ class CategoryRequest extends FormRequest
 
         $tableName = 'categories';
         $columnName = 'name';
-        $rules['name'] =['required','string','min:3'];
+        $rules['name'] =['required','string','min:3','max:191'];
 
         $rules['name'][] = (is_null($id)) ? Rule::unique($tableName,$columnName) : Rule::unique($tableName,$columnName)->ignore($id);
 

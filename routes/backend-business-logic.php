@@ -12,7 +12,7 @@ Route::group($attributes, function(){
             // start blog routes
             Route::group(['prefix'=>'Blog','namespace'=>'Blog'],function (){
                 // start post routes
-                Route::resource('Post','PostController');
+                Route::resource('Post','PostController')->except('show');
                 // start category routes
                 Route::resource('Category','CategoryController');
                 // start tag routes

@@ -58,7 +58,10 @@ return [
             'driver' => 'local',
             'root' => base_path('public')
         ],
-
+        'FileManager' => [
+            'driver' => 'local',
+            'root' => base_path('public'.DIRECTORY_SEPARATOR.'file-manager')
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

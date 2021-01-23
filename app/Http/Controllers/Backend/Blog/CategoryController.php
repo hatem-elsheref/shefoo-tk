@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Blog\Category;
-use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -31,7 +30,7 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request){
 
-        $category = Category::create(['name' => $request->name,'slug'=>Str::slug($request->name)]);
+        $category = Category::create(['name' => $request->name,'slug'=>$this->slug($request->name)]);
         $category ? self::Success() : self::Fail();
         return redirect()->route('Category.index');
     }
@@ -53,7 +52,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
-        $category->update(['name'=>$request->name,'slug'=>Str::slug($request->name)]) ? self::Success() : self::Fail();
+        $category->update(['name'=>$request->name,'slug'=>$this->slug($request->name)]) ? self::Success() : self::Fail();
         return redirect()->route('Category.index');
     }
 

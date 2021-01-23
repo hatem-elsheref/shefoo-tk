@@ -74,8 +74,6 @@
                                 <label class="custom-file-label" for="coverImage">{{__('backend.choice_file')}}</label>
                             </div>
                             <img style="width: 60px;height:60px" id="img-preview" class="mt-2 img-responsive  img-fluid" src="{{ uploads(mainPath(_ADMIN.'/'.DEFAULT_AVATAR)) }}">
-
-
                         </div>
                     </div>
                     <div class="col-sm-6">

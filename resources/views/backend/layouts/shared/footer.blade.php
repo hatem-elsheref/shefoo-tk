@@ -25,6 +25,7 @@
 <script src="{{backendAssets('plugins/slimscrollbar/jquery.slimscroll.min.js')}}"></script>
 <script src="{{backendAssets('js/sleek.bundle.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{backendAssets('plugins/select2/js/select2.min.js')}}"></script>
 <script>
 
 
@@ -52,12 +53,10 @@
     // show the uploaded image as a live preview
     function readURL(input) {
       if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
+        let reader = new FileReader();
         reader.onload = function(e) {
           $('#img-preview').attr('src', e.target.result);
         }
-
         reader.readAsDataURL(input.files[0]); // convert to base64 string
       }
     }
@@ -68,8 +67,8 @@
 
     // manage the system direction (rtl-ltr)
     $(document).ready(function () {
-    var ltr = jQuery('.ltr-to');
-    var rtl = jQuery('.rtl-to');
+    let ltr = jQuery('.ltr-to');
+    let rtl = jQuery('.rtl-to');
 
     @if(LaravelLocalization::getCurrentLocaleDirection() === 'ltr')
         activeTheNeededDirection(ltr,rtl,'ltr')
@@ -88,11 +87,16 @@
         window.dir = direction;
 
         //Store in local storage
-        setOptions("direction", direction);
+        // setOptions("direction", direction);
+        let optionsCopy={
+            "direction":direction
+        }
+        localStorage.setItem("optionsObject", JSON.stringify(optionsCopy));
+
     }
 
-
     </script>
-</body>
 
+@yield('js')
+</body>
 </html>

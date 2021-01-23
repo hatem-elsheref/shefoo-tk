@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sleek Dashboard - Free Bootstrap 4 Admin Dashboard Template and UI Kit. It is very powerful bootstrap admin dashboard, which allows you to build products like admin panels, content management systems and CRMs etc.">
+    <meta name="description" content="Elsheref Admin Panel">
     <title>{{env('APP_NAME')}}</title>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet" />
@@ -26,6 +26,7 @@
     <![endif]-->
     <script src="{{backendAssets('plugins/nprogress/nprogress.js')}}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css">
+    <link href="{{backendAssets('plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
     <!-- global custom design -->
     <link id="sleek-css" rel="stylesheet" href="{{backendAssets('css/system-design.css')}}" />
     @yield('css')
@@ -34,6 +35,8 @@
             padding-bottom: 0px;
         }
     </style>
+
+    @stack('js_before')
 </head>
 
 
@@ -43,6 +46,7 @@
     NProgress.configure({ showSpinner: false });
     NProgress.start();
 </script>
+
 
 <div class="wrapper">
 

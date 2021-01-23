@@ -28,7 +28,7 @@ class TagRequest extends FormRequest
 
         $tableName = 'tags';
         $columnName = 'name';
-        $rules['name'] =['required','string','min:3'];
+        $rules['name'] =['required','string','min:1','max:191'];
 
         $rules['name'][] = (is_null($id)) ? Rule::unique($tableName,$columnName) : Rule::unique($tableName,$columnName)->ignore($id);
 

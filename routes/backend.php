@@ -63,6 +63,10 @@ Route::group($attributes, function(){
                 Route::post('/Translation','TranslationController@save')->name('translation.save');
             });
 
+            Route::group(['prefix' => 'FileManager'], function () {
+                \UniSharp\LaravelFilemanager\Lfm::routes();
+            });
+
         });
 
     });

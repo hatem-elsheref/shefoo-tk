@@ -21,6 +21,11 @@ trait NotificationTrait{
         toast($message,'error');
     }
 
+    // if you tried to perform any operation and failed
+    public static function Info($message='Attention !!'){
+        toast($message,'info');
+    }
+
     // if you tried to Access Some Content Or Do Some Operation You Dont Allowed To Access
     public static function NotAuthorized($title='Sorry',$message='Not Allowed To You To Access This Content'){
 //        Alert::error($title,$message);

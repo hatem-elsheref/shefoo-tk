@@ -21,7 +21,6 @@ class CreateAdminsTable extends Migration
             $table->string('avatar');
             $table->enum('status',['blocked','non-blocked'])->default('non-blocked');
             $table->unsignedBigInteger('group');
-
             $table->foreign('group')->references('id')
                 ->on('groups')->onDelete('cascade');
             $table->rememberToken();

@@ -15,14 +15,18 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('title');
-            $table->text('description');
+            $table->string('slug')->unique();
             $table->longText('content');
-            $table->integer('category_id');
-            $table->integer('user_id');
             $table->string('image');
-            $table->boolean('status');
-            $table->enum('dir',['ltr','rtl'])->default('ltr');
+            $table->string('meta')->nullable();
+            $table->enum('status',['published','drafted'])->default('drafted');
+            $table->integer('views')->default(0);
+            $table->integer('comments')->default(0);
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

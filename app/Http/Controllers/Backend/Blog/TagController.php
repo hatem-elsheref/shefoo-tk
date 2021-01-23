@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\Blog;
 use App\Http\Requests\TagRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Tag;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -31,7 +31,7 @@ class TagController extends Controller
 
     public function store(TagRequest $request){
 
-        $tags = Tag::create(['name' => $request->name,'slug'=>Str::slug($request->name)]);
+        $tags = Tag::create(['name' => $request->name,'slug'=>$this->slug($request->name)]);
         $tags ? self::Success() : self::Fail();
         return redirect()->route('Tag.index');
 
@@ -40,7 +40,8 @@ class TagController extends Controller
 
     public function show($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        return view('backend.blog.post.index')->with('posts',$tag->posts);
     }
 
 
@@ -54,15 +55,26 @@ class TagController extends Controller
     public function update(TagRequest $request, $id)
     {
         $tag = Tag::findOrFail($id);
-        $tag->update(['name'=>$request->name,'slug'=>Str::slug($request->name)]) ? self::Success() : self::Fail();
+        $tag->update(['name'=>$request->name,'slug'=>$this->slug($request->name)]) ? self::Success() : self::Fail();
         return redirect()->route('Tag.index');
     }
+
 
 
     public function destroy($id)
     {
         $tag = Tag::findOrFail($id);
+
+        $this->removeRelationBetweenTagAndPosts($id);
+
         $tag->delete() ? self::Success() : self::Fail();
+
         return redirect()->route('Tag.index');
     }
+
+    private function removeRelationBetweenTagAndPosts($tagId){
+        DB::table('post_tags')->where('tag_id',$tagId)->delete();
+    }
 }
+
+
