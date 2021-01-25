@@ -29,4 +29,12 @@ class Post extends Model
         return $this->belongsTo('\App\Models\Blog\Category','category_id','id');
     }
 
+    public function admin(){
+        return $this->belongsTo('\App\Models\Admin','admin_id','id');
+    }
+
+    public function postTags(){
+        return $this->tags->pluck('id')->toArray();
+    }
+
 }

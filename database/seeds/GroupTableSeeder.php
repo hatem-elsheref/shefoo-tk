@@ -16,6 +16,9 @@ class GroupTableSeeder extends Seeder
         $models=config('trusting.models');
         $admin=config('trusting.administratorGroup');
 
+
+        $models['Admin'] = ['c','r','d','u'];
+
         $separator='_';
 
         $systemAdmin=Group::create($admin);

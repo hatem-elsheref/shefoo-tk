@@ -30,9 +30,9 @@
 
 
 
-        function RemoveItem(formId){
+        function RemoveItem(formId,message = 'Do you want to remove the this?'){
             Swal.fire({
-                title: `<h3>Do you want to remove the this?</h3>`,
+                title: `<h3>${message}</h3>`,
                 showDenyButton: false,
                 showCancelButton: true,
                 confirmButtonColor: '#dd6b55',

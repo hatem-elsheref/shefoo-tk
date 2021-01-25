@@ -23,21 +23,27 @@ return [
             'sub'   =>[
                 [
                     'name'  =>'posts',
-                    'new'   =>true,
+                    'new'   =>false,
                     'color' =>'danger',
                     'route' =>'Post.index'
                 ],
                 [
                     'name'  =>'categories',
-                    'new'   =>true,
+                    'new'   =>false,
                     'color' =>'danger',
                     'route' =>'Category.index'
                 ],
                 [
                     'name'  =>'tags',
-                    'new'   =>true,
+                    'new'   =>false,
                     'color' =>'danger',
                     'route' =>'Tag.index'
+                ],
+                [
+                    'name'  =>'trashed',
+                    'new'   =>true,
+                    'color' =>'success',
+                    'route' =>'Post.trashed'
                 ]
             ],
         ],

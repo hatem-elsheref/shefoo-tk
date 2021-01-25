@@ -11,6 +11,5 @@ define('PAGINATION',10);
 
 define('DEFAULT_AVATAR','default-user.png');
 define('DEFAULT_IMAGE','default.jpg');
-
 define('_ADMIN','admins');
 define('_BLOG','blog');

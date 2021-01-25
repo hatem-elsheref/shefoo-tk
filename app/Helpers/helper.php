@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\File;
+
+
 // return the language middleware (macamera)
 if(!function_exists('macameraMiddlewares')){
     function macameraMiddlewares(){
@@ -31,6 +34,15 @@ if(!function_exists('preparePathToUpload')){
 }
 
 
+// remove a given file from the system
+if (!function_exists('removeFile')){
+    function removeFile($path){
+        $full_path = fullPath($path);
+        if (File::exists($full_path) && $path != mainPath(DEFAULT_IMAGE))
+            File::delete($full_path);
+        return true;
+    }
+}
 
 
 

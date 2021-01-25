@@ -34,3 +34,5 @@ if (!function_exists('fullPath')){
         return base_path('public/'.$file);
     }
 }
+
+

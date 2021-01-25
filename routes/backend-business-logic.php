@@ -13,6 +13,10 @@ Route::group($attributes, function(){
             Route::group(['prefix'=>'Blog','namespace'=>'Blog'],function (){
                 // start post routes
                 Route::resource('Post','PostController')->except('show');
+                Route::get('Post/{Post}/status','PostController@status')->name('Post.status');
+                Route::get('Post/trashed','PostController@trashed')->name('Post.trashed');
+                Route::post('Post/{Post}/restore','PostController@restore')->name('Post.restore');
+                Route::delete('Post/{Post}/force-delete','PostController@forceDelete')->name('Post.force-delete');
                 // start category routes
                 Route::resource('Category','CategoryController');
                 // start tag routes

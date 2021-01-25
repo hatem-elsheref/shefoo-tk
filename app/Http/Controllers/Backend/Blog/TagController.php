@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backend\Blog;
 
 use App\Http\Requests\TagRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Blog\Post;
 use App\Models\Blog\Tag;
-use Illuminate\Support\Facades\DB;
 
 class TagController extends Controller
 {
@@ -21,7 +21,11 @@ class TagController extends Controller
 
     public function index()
     {
-        return view($this->view('index'))->with('tags',Tag::all());
+        $tags = Tag::withCount([
+            'posts as published_posts' => fn($q) => $q->withTrashed()->where('status','published'),
+            'posts as drafted_posts' => fn($q) => $q->withTrashed()->where('status','drafted')])
+            ->orderByDesc('created_at')->paginate(PAGINATION);
+        return view($this->view('index'))->with('tags',$tags);
     }
 
     public function create()
@@ -34,14 +38,17 @@ class TagController extends Controller
         $tags = Tag::create(['name' => $request->name,'slug'=>$this->slug($request->name)]);
         $tags ? self::Success() : self::Fail();
         return redirect()->route('Tag.index');
-
     }
 
 
     public function show($id)
     {
-        $tag = Tag::findOrFail($id);
-        return view('backend.blog.post.index')->with('posts',$tag->posts);
+
+        $posts = Post::with('category')->withCount('tags')->whereHas('tags',function ($query) use ($id){
+            $query->where('tags.id',$id);
+        })->paginate(PAGINATION);
+
+        return view('backend.blog.post.index')->with('posts',$posts);
     }
 
 
@@ -63,18 +70,15 @@ class TagController extends Controller
 
     public function destroy($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = Tag::with('posts')->findOrFail($id);
 
-        $this->removeRelationBetweenTagAndPosts($id);
+        $tag->posts()->detach($tag->posts->pluck('id')->toArray());
 
         $tag->delete() ? self::Success() : self::Fail();
 
         return redirect()->route('Tag.index');
     }
 
-    private function removeRelationBetweenTagAndPosts($tagId){
-        DB::table('post_tags')->where('tag_id',$tagId)->delete();
-    }
 }
 
 

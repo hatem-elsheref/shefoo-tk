@@ -2,7 +2,8 @@
 
 return [
     'models'=>[
-        'Admin'     =>['c','r','d','u'],
+//        'Admin'     =>['c','r','d','u'],
+        'Admin'     =>[],
         'User'      =>['r','d'],
         'Group'      =>['c','r','d','u'],
         'Category'  =>['c','r','d','u'],

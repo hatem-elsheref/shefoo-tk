@@ -25,7 +25,7 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="title">{{__('backend.post_title')}}</label>
-                            <input type="text" class="form-control" name="title" placeholder="{{__('backend.enter')}} {{__('backend.post_title')}}" value="{{old('title')}}">
+                            <input type="text" id="title" class="form-control" name="title" placeholder="{{__('backend.enter')}} {{__('backend.post_title')}}" value="{{old('title')}}">
                             @error('title')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -64,7 +64,11 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="status">{{__('backend.meta_tags')}}</label>
-                            <select class="post-meta-tags form-control" name="meta[]" multiple="multiple"></select>
+                            <select class="post-meta-tags form-control" name="meta[]" multiple="multiple">
+                                @foreach((array) old('meta') as $metaTag)
+                                    <option value="{{$metaTag}}" selected>{{$metaTag}}</option>
+                                @endforeach
+                            </select>
                             @error('meta')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
@@ -81,7 +85,7 @@
                             @error('image')
                             <span class="text-danger">{{$message}}</span><br>
                             @enderror
-                            <img style="width: 60px;height:60px" id="img-preview" class="mt-2 img-responsive  img-fluid" src="{{ uploads(mainPath(_BLOG.'/'.DEFAULT_IMAGE)) }}">
+                            <img style="width: 60px;height:60px" id="img-preview" class="mt-2 img-responsive  img-fluid" src="{{ uploads(mainPath(DEFAULT_IMAGE)) }}">
                         </div>
                     </div>
 

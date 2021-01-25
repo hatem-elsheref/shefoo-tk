@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
     return view('backend.auth.login');
 //    return view('welcome');
 })->name('statistics');
@@ -21,3 +22,21 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
+
+// used in dashboard in category and tags
+Route::get('/tag/{slug}',function (){
+    return 'all posts of this tag by slug';
+})->name('blog.searchByTag');
+
+Route::get('/category/{slug}',function (){
+    return 'all posts of this category by slug';
+})->name('blog.searchByCategory');
+Route::get('/post/{slug}',function (){
+    return 'show post details by slug';
+})->name('blog.searchByPost');
+
